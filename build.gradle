@@ -1,0 +1,44 @@
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
+
+android {
+    compileSdk 34 // Укажите актуальную версию
+    defaultConfig {
+        minSdk 24
+        targetSdk 34
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+}
+
+// Копируем .aar в нужную директорию
+task copyAar(type: Copy) {
+    from 'core-release.aar'
+    into "$buildDir/outputs/aar"
+//    rename { 'core-release.aar' } // Имя должно совпадать с release-сборкой
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name == 'assembleRelease') {
+        task.dependsOn copyAar
+    }
+}
+
+// Публикация артефакта
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.arthur-morosov' // Например: com.github.johndoe
+                artifactId = 'axiom-sdk-api'           // Имя артефакта
+                version = '0.0.1'                  // Версия
+            }
+        }
+    }
+}
