@@ -9,6 +9,7 @@ plugins {
 }
 
 android {
+    namespace = "ru.alfapos"
     compileSdk = 36 // Укажите актуальную версию
     defaultConfig {
         minSdk = 24
