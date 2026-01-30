@@ -24,7 +24,7 @@ afterEvaluate {
 
                 groupId = "com.github.arthur-morosov"
                 artifactId = "axiom-sdk-api"
-                version = "0.0.15"
+                version = "0.0.16"
             }
         }
     }
