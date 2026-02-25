@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.android.library)
     `maven-publish`
 }
-
+7
 android {
     namespace = "ru.alfapos"
     compileSdk = 36 // Укажите актуальную версию
